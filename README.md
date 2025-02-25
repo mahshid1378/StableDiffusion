@@ -213,3 +213,32 @@ Thanks for open-sourcing!
 ```
 
 
+## Chalenge excute code
+1) Requires high computational resources, Producing high-quality images from the Stable Diffusion model requires powerful graphics processing units (GPUs) and large amounts of memory, which can pose challenges for developers with limited hardware.
+SOLVE=>
+```shell
+import torch
+from transformers import CLIPProcessor, CLIPModel
+
+
+model = CLIPModel.from_pretrained("openai/clip-vit-base-patch32")
+processor = CLIPProcessor.from_pretrained("openai/clip-vit-base-patch32")
+
+inputs = processor(text=["A photo of a cat"], images=[image], return_tensors="pt", padding=True)
+outputs = model(**inputs)
+logits_per_image = outputs.logits_per_image # this is the image-text similarity score
+```
+
+2) Precise model settings for specific images, To obtain specific images with desired features, it is necessary to fine-tune the model. This tuning involves changes in model parameters such as learning rate, size of latent space, and number of steps.
+SOLVE=>
+```shell
+import torch
+from transformers import CLIPProcessor, CLIPModel
+
+
+num_steps = 50
+guidance_scale = 7.5
+
+for step in range(num_steps):
+    pass
+```
